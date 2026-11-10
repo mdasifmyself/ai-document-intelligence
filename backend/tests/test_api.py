@@ -148,6 +148,8 @@ def test_search_keyword_semantic_and_filters(client):
     assert {h["invoice"]["invoice_number"] for h in hy["hits"]} == {"S-1"}
     docs = client.get("/api/v1/documents", params={"q": "BluePeak"}).json()
     assert docs["total"] == 1
+    typo = client.get("/api/v1/search", params={"q": "Blupeak", "mode": "keyword"}).json()   # typo still finds it
+    assert typo["hits"] and typo["hits"][0]["invoice"]["invoice_number"] == "S-2"
 
 
 def test_page_text_image_file_and_delete(client):

@@ -91,7 +91,7 @@ function Documents() {
           ) : (
             <table className="table">
               <thead>
-                <tr><th>File</th><th className="hide-sm">Read with</th><th className="r hide-sm">Pages</th><th className="r">Invoices</th><th className="r hide-sm">To check</th><th className="r hide-sm">Time</th><th>Status</th></tr>
+                <tr><th>File</th><th className="hide-sm">Read with</th><th className="r hide-sm">Pages</th><th className="r hide-sm">Invoices</th><th className="r hide-sm">To check</th><th className="r hide-sm">Time</th><th className="hide-sm">Status</th></tr>
               </thead>
               <tbody>
                 {data.items.map((d) => (
@@ -106,15 +106,16 @@ function Documents() {
                             {d.status === "processing" && ` · ${STAGE[d.progress?.stage || ""] || "Working"}${d.progress?.total ? ` ${d.progress.done}/${d.progress.total}` : ""}`}
                             {d.status === "failed" && <span style={{ color: "var(--red)" }}> · {ISSUE[d.error_code || ""]?.title || d.error_code}</span>}
                           </span>
+                          <span className="show-sm" style={{ marginTop: 6, gap: 8, alignItems: "center" }}><StatusPill status={d.status} /><span className="faint small">{d.invoice_count} invoice{d.invoice_count === 1 ? "" : "s"}</span></span>
                         </div>
                       </div>
                     </td>
                     <td className="hide-sm small muted">{d.text_method ? METHOD[d.text_method] || d.text_method : "—"}{d.ocr_confidence != null && <span className="faint"> · {Math.round(d.ocr_confidence)}%</span>}</td>
                     <td className="r hide-sm num">{d.page_count ?? "—"}</td>
-                    <td className="r num">{d.invoice_count}</td>
+                    <td className="r num hide-sm">{d.invoice_count}</td>
                     <td className="r hide-sm num">{d.issue_count || "—"}</td>
                     <td className="r hide-sm num small muted">{duration(d.processing_ms)}</td>
-                    <td><StatusPill status={d.status} /></td>
+                    <td className="hide-sm"><StatusPill status={d.status} /></td>
                   </tr>
                 ))}
               </tbody>

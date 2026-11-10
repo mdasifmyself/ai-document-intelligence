@@ -75,7 +75,7 @@ function SystemPage() {
         <div className="card stat">
           <span className="label"><Light ok={s.documents.slow_or_stuck.length === 0} warn />Stuck files</span>
           <span className="value">{s.documents.slow_or_stuck.length}</span>
-          <span className="sub">recovered automatically after {s.documents.stale_after_minutes} min</span>
+          <span className="sub">put back in the queue automatically within minutes</span>
         </div>
       </div>
 

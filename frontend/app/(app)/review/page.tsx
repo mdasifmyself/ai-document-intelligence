@@ -38,17 +38,23 @@ function Review() {
             <Empty icon={<ShieldCheck size={22} />} title="Nothing to review">Every extracted invoice passed its checks or was approved by a person.</Empty>
           ) : (
             <table className="table">
-              <thead><tr><th>Invoice</th><th className="hide-sm">Supplier</th><th className="hide-sm">Date</th><th className="r">Total</th><th>Why it needs a look</th></tr></thead>
+              <thead><tr><th>Invoice</th><th className="hide-sm">Supplier</th><th className="hide-sm">Date</th><th className="r hide-sm">Total</th><th className="hide-sm">Why it needs a look</th></tr></thead>
               <tbody>
                 {data.items.map((i) => {
                   const codes = i.issue_codes || [];
                   return (
                     <tr key={i.id} className="click" onClick={() => router.push(`/documents/${i.document_id}?invoice=${i.id}`)}>
-                      <td><span style={{ fontWeight: 500 }}>{i.invoice_number || "No number"}</span><span className="faint small fname" style={{ maxWidth: 220 }}>{i.document_filename}</span></td>
+                      <td>
+                        <span style={{ fontWeight: 500 }}>{i.invoice_number || "No number"}</span><span className="faint small fname" style={{ maxWidth: 220 }}>{i.document_filename}</span>
+                        <span className="show-sm" style={{ marginTop: 6, gap: 6, flexWrap: "wrap", alignItems: "center" }}>
+                          <span className="num small" style={{ fontWeight: 500 }}>{money(i.total, i.currency)}</span>
+                          {(i.issue_codes || []).slice(0, 2).map((c) => <span key={c} className="pill tone-amber">{issueTitle(c)}</span>)}
+                        </span>
+                      </td>
                       <td className="hide-sm">{i.supplier_name || <span className="faint">—</span>}</td>
                       <td className="hide-sm num small nowrap">{dateText(i.invoice_date)}</td>
-                      <td className="r num">{money(i.total, i.currency)}</td>
-                      <td>
+                      <td className="r num hide-sm">{money(i.total, i.currency)}</td>
+                      <td className="hide-sm">
                         <div className="row wrap" style={{ gap: 6 }}>
                           {codes.slice(0, 2).map((c) => <span key={c} className={`pill ${["MISSING_FIELD", "TOTAL_MISMATCH", "LINE_ITEMS_MISMATCH", "LINE_ITEM_MATH", "DUPLICATE_INVOICE", "CROSS_CHECK_MISMATCH", "INVALID_AMOUNT"].includes(c) ? "tone-red" : "tone-amber"}`}>{issueTitle(c)}</span>)}
                           {codes.length > 2 && <span className="faint small">+{codes.length - 2}</span>}

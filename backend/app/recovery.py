@@ -24,6 +24,8 @@ STALE_MINUTES = get_settings().recovery_stale_minutes
 LOST_QUEUE_MINUTES = 10
 MAX_ATTEMPTS = 3
 ORPHAN_MINUTES = 3          # processing, no live worker holds the job, and no heartbeat for this long
+AUTO_RETRY_CODES = ("AI_UNAVAILABLE", "WORKER_ERROR", "WORKER_LOST", "INTERNAL_ERROR")
+AUTO_RETRY_AFTER_MINUTES = 5
 
 
 def _now():
@@ -77,7 +79,7 @@ def _registries():
 def sweep() -> dict:
     """One recovery pass. Returns what it did (also shown on the System page)."""
     from .queue import enqueue_document
-    done = {"requeued": 0, "failed": 0, "lost_requeued": 0}
+    done = {"requeued": 0, "failed": 0, "lost_requeued": 0, "auto_retried": 0}
     now = _now()
     with session_scope() as s:
         got = s.execute(text("SELECT pg_try_advisory_xact_lock(515151)")).scalar()
@@ -115,6 +117,16 @@ def sweep() -> dict:
                 s.add(ValidationIssue(document_id=d.id, code="WORKER_LOST", severity="error", message=msg))
                 s.add(ProcessingEvent(document_id=d.id, stage="recovery", status="failed", message=msg))
                 done["failed"] += 1
+        # temporary failures get one automatic retry (a second failure stays failed for a person to see)
+        retry = s.scalars(select(Document).where(
+            Document.status == "failed", Document.error_code.in_(AUTO_RETRY_CODES), Document.attempts < 2,
+            Document.finished_at < now - timedelta(minutes=AUTO_RETRY_AFTER_MINUTES))).all()
+        for d in retry:
+            s.add(ProcessingEvent(document_id=d.id, stage="recovery", status="info",
+                                  message=f"Automatic retry after a temporary failure ({d.error_code})."))
+            d.status, d.progress = "queued", {"stage": "queued", "done": 0, "total": 0}
+            requeue.append(d.id)
+            done["auto_retried"] += 1
         try:
             if alive is None:
                 raise RuntimeError("no queue")

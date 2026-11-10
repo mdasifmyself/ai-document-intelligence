@@ -88,3 +88,48 @@ def test_system_status(client):
     assert r.status_code == 200
     body = r.json()
     assert "queue" in body and "documents" in body and "recent_failures" in body["documents"]
+
+
+def test_forked_process_uses_its_own_database_connections(client):
+    """Regression: jobs run in forked processes; a connection inherited from the parent caused
+    'prepared statement already exists'. The child must open fresh connections and work normally."""
+    import os
+    from sqlalchemy import text
+    from app import db
+    with db.session_scope() as s:
+        s.execute(text("SELECT 1"))          # parent opens a pooled connection
+    pid = os.fork()
+    if pid == 0:                              # child
+        code = 0
+        try:
+            assert db._engine is None         # inherited engine was dropped
+            for _ in range(3):
+                with db.session_scope() as s:
+                    s.execute(text("SELECT count(*) FROM documents"))
+        except Exception:
+            code = 1
+        os._exit(code)
+    _, status = os.waitpid(pid, 0)
+    assert os.WEXITSTATUS(status) == 0
+    with db.session_scope() as s:             # parent still works
+        assert s.execute(text("SELECT 1")).scalar() == 1
+
+
+def test_temporary_failure_is_retried_once_automatically(client, fake_ai):
+    fake_ai.down = True
+    doc = up(client, ("a.pdf", F.pdf(F.invoice(number="R-1"))))[0]
+    assert client.get(f"/api/v1/documents/{doc['id']}").json()["error_code"] == "AI_UNAVAILABLE"
+    with session_scope() as s:
+        s.get(Document, doc["id"]).finished_at = datetime.now(timezone.utc) - timedelta(minutes=10)
+    fake_ai.down = False
+    assert sweep()["auto_retried"] == 1
+    d = client.get(f"/api/v1/documents/{doc['id']}").json()
+    assert d["status"] == "completed" and d["attempts"] == 2
+    assert sweep()["auto_retried"] == 0          # never retried in a loop
+
+
+def test_file_problems_are_not_auto_retried(client):
+    doc = up(client, ("broken.pdf", b"%PDF-1.4 broken"))[0]
+    with session_scope() as s:
+        s.get(Document, doc["id"]).finished_at = datetime.now(timezone.utc) - timedelta(minutes=10)
+    assert sweep()["auto_retried"] == 0

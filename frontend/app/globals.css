@@ -167,7 +167,9 @@ p { margin: 0; }
 .seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
 .seg button { border: 0; background: transparent; height: 32px; padding: 0 14px; border-radius: 999px; font-family: var(--f-ui); font-size: 13.5px; font-weight: 500; color: var(--text-2); cursor: pointer; }
 .seg button.on { background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
-.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 16px; overflow-x: auto; }
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 16px; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.show-sm { display: none; }
 .tabs button { border: 0; background: none; padding: 10px 12px; font-family: var(--f-ui); font-size: 14px; font-weight: 500; color: var(--text-2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
 .tabs button.on { color: var(--ink); border-color: var(--cyan); }
 .tabs .count { margin-left: 6px; font-size: 12px; color: var(--text-3); }
@@ -284,6 +286,7 @@ mark { background: var(--cyan-50); color: var(--ink); border-radius: 4px; paddin
   .field-row { grid-template-columns: 1fr auto; }
   .field-row .k { grid-column: 1 / -1; }
   .hide-sm { display: none; }
+  .show-sm { display: flex; }
 }
 @media (max-width: 520px) {
   .g-4 { grid-template-columns: 1fr 1fr; gap: 10px; }

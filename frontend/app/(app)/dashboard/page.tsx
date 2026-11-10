@@ -35,6 +35,16 @@ function Dashboard() {
   useEffect(() => { try { setShowStart(localStorage.getItem("docintel.hideStart") !== "1"); } catch { /* ignore */ } }, []);
   const hideStart = () => { setShowStart(false); try { localStorage.setItem("docintel.hideStart", "1"); } catch { /* ignore */ } };
   const failed = stats?.documents.by_status.failed || 0;
+  const [systemFailed, setSystemFailed] = useState(0);
+  useEffect(() => {
+    const load = () => getJSON<{ documents: { failed_by_code: Record<string, number> } }>("/system/status").then((x) => {
+      const c = x.documents.failed_by_code;
+      setSystemFailed(["AI_UNAVAILABLE", "WORKER_ERROR", "WORKER_LOST", "INTERNAL_ERROR", "JOB_TIMEOUT"].reduce((n, k) => n + (c[k] || 0), 0));
+    }).catch(() => {});
+    load();
+    const t = setInterval(load, 15000);
+    return () => clearInterval(t);
+  }, []);
   const busy = stats ? stats.processing.processing_now + Math.max(0, stats.processing.waiting_in_queue) : 0;
   const byCode = new Map<string, { code: string; severity: string; count: number }>();
   (stats?.issues || []).filter((i) => i.severity !== "info").forEach((i) => {
@@ -100,6 +110,14 @@ function Dashboard() {
         </div>
       </div>
 
+      {systemFailed > 0 && (
+        <div className="notice err" style={{ marginBottom: 16 }}>
+          <span>
+            <b style={{ fontWeight: 600 }}>{systemFailed} file{systemFailed === 1 ? "" : "s"} failed because of a system problem</b> (not because of the file itself).
+            They are retried once automatically after 5 minutes. <Link href="/system" style={{ textDecoration: "underline" }}>See details and retry now</Link>.
+          </span>
+        </div>
+      )}
       {busy > 0 && (
         <div className="notice" style={{ marginBottom: 16 }}>
           <span className="spinner" style={{ marginTop: 2 }} />

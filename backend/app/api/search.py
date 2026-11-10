@@ -61,14 +61,18 @@ def search(q: str = Query("", max_length=300, description="Words or a question, 
 
     if mode in ("keyword", "hybrid"):
         tsq = func.websearch_to_tsquery("english", q)
+        # word_similarity compares the query with the best-matching words of the name, so a typo such as
+        # "Northwnd" still finds "Northwind Medical Supplies Ltd"
         rank = (func.ts_rank_cd(Invoice.search_tsv, tsq) + func.greatest(
-            func.similarity(func.coalesce(Invoice.supplier_name, ""), q),
+            func.word_similarity(q, func.coalesce(Invoice.supplier_name, "")),
+            func.word_similarity(q, func.coalesce(Invoice.customer_name, "")),
             func.similarity(func.coalesce(Invoice.invoice_number, ""), q))).label("rank")
         snippet = func.ts_headline("english", func.coalesce(Invoice.search_text, ""), tsq,
                                    "StartSel=<mark>,StopSel=</mark>,MaxWords=18,MinWords=6").label("snippet")
         stmt = base.add_columns(rank, snippet).where(or_(
             Invoice.search_tsv.op("@@")(tsq),
-            func.similarity(func.coalesce(Invoice.supplier_name, ""), q) > 0.3,
+            func.word_similarity(q, func.coalesce(Invoice.supplier_name, "")) > 0.5,
+            func.word_similarity(q, func.coalesce(Invoice.customer_name, "")) > 0.5,
             Invoice.invoice_number.ilike(f"%{q}%"),
         )).order_by(rank.desc()).limit(limit * 2)
         keyword = db.execute(stmt).all()

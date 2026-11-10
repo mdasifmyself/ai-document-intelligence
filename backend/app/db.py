@@ -1,4 +1,5 @@
 """Database engine, session helper and schema creation."""
+import os
 from contextlib import contextmanager
 
 from sqlalchemy import create_engine, text
@@ -18,7 +19,10 @@ _SessionLocal = None
 def engine():
     global _engine, _SessionLocal
     if _engine is None:
-        _engine = create_engine(get_settings().database_url, pool_pre_ping=True, pool_size=5, max_overflow=5)
+        # prepare_threshold=None: no server-side prepared statements, so a connection can never clash with
+        # statements prepared by another process (and the app works behind PgBouncer too)
+        _engine = create_engine(get_settings().database_url, pool_pre_ping=True, pool_size=5, max_overflow=5,
+                                connect_args={"prepare_threshold": None})
         _SessionLocal = sessionmaker(bind=_engine, expire_on_commit=False)
     return _engine
 
@@ -29,6 +33,17 @@ def reset_engine():
     if _engine is not None:
         _engine.dispose()
     _engine, _SessionLocal = None, None
+
+
+def _after_fork_in_child():
+    """A forked process (each RQ job runs in one) must never reuse the parent's database connections."""
+    global _engine, _SessionLocal
+    if _engine is not None:
+        _engine.dispose(close=False)
+    _engine, _SessionLocal = None, None
+
+
+os.register_at_fork(after_in_child=_after_fork_in_child)
 
 
 @contextmanager

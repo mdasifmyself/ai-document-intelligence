@@ -1,5 +1,5 @@
 {
- "run_at": "2026-11-10T08:03:47+00:00",
+ "run_at": "2026-11-10T09:35:15+00:00",
  "models": "gpt-4.1-mini (text), gpt-4.1-mini (vision), text-embedding-3-small (search)",
  "files": 96,
  "documents": {
@@ -11,8 +11,8 @@
   "broken_files": 6,
   "broken_files_handled_pct": 100.0,
   "status_counts": {
-   "completed": 51,
-   "needs_review": 39,
+   "completed": 54,
+   "needs_review": 36,
    "failed": 6
   }
  },
@@ -23,18 +23,18 @@
   "extra_invoices": 1,
   "detection_rate_pct": 100.0,
   "field_accuracy_pct": {
-   "invoice_number": 99.3,
+   "invoice_number": 100.0,
    "invoice_date": 100.0,
    "supplier_name": 100.0,
-   "customer_name": 99.3,
+   "customer_name": 100.0,
    "subtotal": 100.0,
    "tax": 100.0,
    "total": 100.0,
    "currency": 100.0
   },
-  "overall_field_accuracy_pct": 99.8,
-  "invoices_all_fields_correct_pct": 99.3,
-  "line_items_exact_pct": 95.9,
+  "overall_field_accuracy_pct": 100.0,
+  "invoices_all_fields_correct_pct": 100.0,
+  "line_items_exact_pct": 99.0,
   "missing_fields_left_empty_pct": 100.0,
   "invented_values": {
    "invoice_date": 0,
@@ -43,8 +43,8 @@
    "invoice_number": 0
   },
   "methods": {
-   "llm_text": 84,
-   "llm_vision": 14,
+   "llm_text": 64,
+   "llm_dual": 34,
    "spreadsheet_columns": 43
   }
  },
@@ -63,135 +63,133 @@
   "planted_issues_total": 55,
   "planted_issues_caught": 55,
   "clean_invoices": 105,
-  "clean_invoices_flagged": 8,
-  "false_flag_rate_pct": 7.6,
+  "clean_invoices_flagged": 6,
+  "false_flag_rate_pct": 5.7,
   "false_flag_codes": {
-   "READ_FROM_IMAGE": 6,
-   "LINE_ITEM_MATH": 2,
-   "LINE_ITEMS_MISMATCH": 1
+   "READ_FROM_IMAGE": 6
   }
  },
  "speed": {
-  "upload_seconds": 0.9,
-  "wall_clock_seconds": 337.5,
+  "upload_seconds": 1.0,
+  "wall_clock_seconds": 410.2,
   "pages": 106,
-  "doc_ms_p50": 4646,
-  "doc_ms_p95": 13466,
-  "doc_ms_max": 18191,
-  "page_ms_p50": 4432,
-  "documents_per_minute": 17.1,
-  "pages_per_minute": 18.8
+  "doc_ms_p50": 4965,
+  "doc_ms_p95": 15783,
+  "doc_ms_max": 56517,
+  "page_ms_p50": 4930,
+  "documents_per_minute": 14.0,
+  "pages_per_minute": 15.5
  },
  "by_kind": {
   "corrupted": {
    "files": 5,
    "field_accuracy_pct": null,
-   "median_ms": 91
+   "median_ms": 97
   },
   "csv_eu": {
    "files": 1,
    "field_accuracy_pct": 100.0,
-   "median_ms": 2542
+   "median_ms": 2752
   },
   "csv_us": {
    "files": 1,
    "field_accuracy_pct": 100.0,
-   "median_ms": 1235
+   "median_ms": 4180
   },
   "image_photo": {
    "files": 8,
    "field_accuracy_pct": 100.0,
-   "median_ms": 9868
+   "median_ms": 10710
   },
   "image_png": {
    "files": 5,
    "field_accuracy_pct": 100.0,
-   "median_ms": 6355
+   "median_ms": 9108
   },
   "image_poor": {
    "files": 4,
-   "field_accuracy_pct": 93.8,
-   "median_ms": 8157
+   "field_accuracy_pct": 100.0,
+   "median_ms": 10646
   },
   "image_tiff": {
    "files": 2,
    "field_accuracy_pct": 100.0,
-   "median_ms": 10069
+   "median_ms": 16496
   },
   "locked": {
    "files": 1,
    "field_accuracy_pct": null,
-   "median_ms": 100
+   "median_ms": 114
   },
   "pdf_ambiguous_date": {
    "files": 2,
    "field_accuracy_pct": 100.0,
-   "median_ms": 3502
+   "median_ms": 3976
   },
   "pdf_bad_line": {
    "files": 4,
    "field_accuracy_pct": 100.0,
-   "median_ms": 4197
+   "median_ms": 4611
   },
   "pdf_batch": {
    "files": 2,
    "field_accuracy_pct": 100.0,
-   "median_ms": 11885
+   "median_ms": 11541
   },
   "pdf_conflict": {
    "files": 1,
    "field_accuracy_pct": 100.0,
-   "median_ms": 5014
+   "median_ms": 4518
   },
   "pdf_digital": {
    "files": 30,
    "field_accuracy_pct": 100.0,
-   "median_ms": 3904
+   "median_ms": 4128
   },
   "pdf_duplicate": {
    "files": 2,
    "field_accuracy_pct": 100.0,
-   "median_ms": 11740
+   "median_ms": 7428
   },
   "pdf_no_customer": {
    "files": 3,
    "field_accuracy_pct": 100.0,
-   "median_ms": 3537
+   "median_ms": 3845
   },
   "pdf_no_date": {
    "files": 3,
    "field_accuracy_pct": 100.0,
-   "median_ms": 5600
+   "median_ms": 5000
   },
   "pdf_no_tax": {
    "files": 2,
    "field_accuracy_pct": 100.0,
-   "median_ms": 5418
+   "median_ms": 4962
   },
   "pdf_scanned": {
    "files": 12,
    "field_accuracy_pct": 100.0,
-   "median_ms": 10024
+   "median_ms": 14914
   },
   "pdf_wrong_total": {
    "files": 5,
    "field_accuracy_pct": 100.0,
-   "median_ms": 4312
+   "median_ms": 4786
   },
   "xls_register": {
    "files": 1,
    "field_accuracy_pct": 100.0,
-   "median_ms": 1268
+   "median_ms": 1813
   },
   "xlsx_layout": {
    "files": 1,
    "field_accuracy_pct": 100.0,
-   "median_ms": 3946
+   "median_ms": 5788
   },
   "xlsx_ledger": {
    "files": 1,
    "field_accuracy_pct": 100.0,
-   "median_ms": 3426
+   "median_ms": 3683
   }
  },
  "rows": [
@@ -773,9 +771,7 @@
    "invoice": "BL-20260051",
    "wrong_fields": [],
    "expected_issues": [],
-   "got_issues": [
-    "SELF_CHECK_REREAD"
-   ],
+   "got_issues": [],
    "status": "completed"
   },
   {
@@ -847,9 +843,7 @@
    "invoice": "INV-20260059",
    "wrong_fields": [],
    "expected_issues": [],
-   "got_issues": [
-    "SELF_CHECK_REREAD"
-   ],
+   "got_issues": [],
    "status": "completed"
   },
   {
@@ -859,8 +853,7 @@
    "wrong_fields": [],
    "expected_issues": [],
    "got_issues": [
-    "READ_FROM_IMAGE",
-    "SELF_CHECK_REREAD"
+    "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
   },
@@ -870,10 +863,8 @@
    "invoice": "TX-20260061",
    "wrong_fields": [],
    "expected_issues": [],
-   "got_issues": [
-    "LINE_ITEM_MATH"
-   ],
-   "status": "needs_review"
+   "got_issues": [],
+   "status": "completed"
   },
   {
    "file": "photo_01_INV-20260062.jpg",
@@ -881,11 +872,8 @@
    "invoice": "INV-20260062",
    "wrong_fields": [],
    "expected_issues": [],
-   "got_issues": [
-    "LINE_ITEMS_MISMATCH",
-    "LINE_ITEM_MATH"
-   ],
-   "status": "needs_review"
+   "got_issues": [],
+   "status": "completed"
   },
   {
    "file": "photo_02_BL-20260063.jpg",
@@ -894,8 +882,7 @@
    "wrong_fields": [],
    "expected_issues": [],
    "got_issues": [
-    "READ_FROM_IMAGE",
-    "SELF_CHECK_REREAD"
+    "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
   },
@@ -906,8 +893,7 @@
    "wrong_fields": [],
    "expected_issues": [],
    "got_issues": [
-    "READ_FROM_IMAGE",
-    "SELF_CHECK_REREAD"
+    "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
   },
@@ -918,8 +904,7 @@
    "wrong_fields": [],
    "expected_issues": [],
    "got_issues": [
-    "READ_FROM_IMAGE",
-    "SELF_CHECK_REREAD"
+    "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
   },
@@ -930,8 +915,7 @@
    "wrong_fields": [],
    "expected_issues": [],
    "got_issues": [
-    "READ_FROM_IMAGE",
-    "SELF_CHECK_REREAD"
+    "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
   },
@@ -973,8 +957,7 @@
     "READ_FROM_IMAGE"
    ],
    "got_issues": [
-    "LINE_ITEMS_MISMATCH",
-    "LINE_ITEM_MATH",
+    "LOW_OCR_QUALITY",
     "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
@@ -983,16 +966,13 @@
    "file": "poor_02_BL-20260071.jpg",
    "kind": "image_poor",
    "invoice": "BL-20260071",
-   "wrong_fields": [
-    "invoice_number",
-    "customer_name"
-   ],
+   "wrong_fields": [],
    "expected_issues": [
     "READ_FROM_IMAGE"
    ],
    "got_issues": [
-    "READ_FROM_IMAGE",
-    "SELF_CHECK_REREAD"
+    "READINGS_DISAGREE",
+    "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
   },
@@ -1005,6 +985,8 @@
     "READ_FROM_IMAGE"
    ],
    "got_issues": [
+    "LOW_OCR_QUALITY",
+    "READINGS_DISAGREE",
     "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
@@ -1018,6 +1000,7 @@
     "READ_FROM_IMAGE"
    ],
    "got_issues": [
+    "LOW_OCR_QUALITY",
     "READ_FROM_IMAGE"
    ],
    "status": "needs_review"
@@ -1055,9 +1038,7 @@
    "invoice": "INV-20260077",
    "wrong_fields": [],
    "expected_issues": [],
-   "got_issues": [
-    "SELF_CHECK_REREAD"
-   ],
+   "got_issues": [],
    "status": "completed"
   },
   {
@@ -1222,8 +1203,7 @@
     "DUPLICATE_INVOICE"
    ],
    "got_issues": [
-    "DUPLICATE_INVOICE",
-    "SELF_CHECK_REREAD"
+    "DUPLICATE_INVOICE"
    ],
    "status": "needs_review"
   },
@@ -1238,7 +1218,7 @@
    "got_issues": [
     "DUPLICATE_INVOICE"
    ],
-   "status": "needs_review"
+   "status": "completed"
   },
   {
    "file": "conflict_revised_BL-20260008.pdf",
