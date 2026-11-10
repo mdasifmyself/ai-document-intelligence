@@ -1,0 +1,45 @@
+# Production overlay for a server that already runs Traefik (HTTPS + Let's Encrypt).
+#   docker compose -f docker-compose.yml -f deploy/docker-compose.server.yml up -d --build
+# Adds: HTTPS routing for the API, no public database/redis ports, hard CPU and memory limits
+# so the stack never takes resources from other services on the same machine.
+services:
+  db:
+    networks: [internal]
+    deploy:
+      resources:
+        limits: {cpus: "0.50", memory: 512M}
+
+  redis:
+    networks: [internal]
+    deploy:
+      resources:
+        limits: {cpus: "0.25", memory: 192M}
+
+  api:
+    ports: !reset []
+    networks: [internal, edge]
+    deploy:
+      resources:
+        limits: {cpus: "0.50", memory: 512M}
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=docintel-edge
+      - traefik.http.routers.docintel-api.rule=Host(`${API_HOST}`)
+      - traefik.http.routers.docintel-api.entrypoints=websecure
+      - traefik.http.routers.docintel-api.tls.certresolver=letsencrypt
+      - traefik.http.services.docintel-api.loadbalancer.server.port=8000
+      - traefik.http.middlewares.docintel-limit.buffering.maxRequestBodyBytes=262144000
+      - traefik.http.routers.docintel-api.middlewares=docintel-limit@docker
+
+  worker:
+    networks: [internal]
+    deploy:
+      replicas: 2
+      resources:
+        limits: {cpus: "0.60", memory: 640M}
+
+networks:
+  internal:
+    name: docintel-internal
+  edge:
+    name: docintel-edge

@@ -1,0 +1,27 @@
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: { default: "DocIntel · AI document intelligence", template: "%s · DocIntel" },
+  description: "Upload invoices, receipts, scans, photos, Excel and CSV files. DocIntel extracts the invoice data with AI, checks every number, flags what needs a person and makes everything searchable.",
+  robots: { index: false, follow: false },
+  icons: { icon: "/icon.svg" },
+};
+
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#f6f8fb" };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}

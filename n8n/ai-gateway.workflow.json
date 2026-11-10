@@ -1,0 +1,238 @@
+{
+  "name": "DEMO DocIntel | AI Gateway",
+  "nodes": [
+    {
+      "id": "e1be3583-47a0-4438-97a6-2ce9f78bae32",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "docintel/ai",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "4f1d9a2e-6c3b-4d8e-9b1a-d0c1e2f3a4b5",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "REPLACE_ME",
+          "name": "<your httpHeaderAuth credential>"
+        }
+      }
+    },
+    {
+      "id": "31c718da-d4a1-4d2c-b51a-4be37390d771",
+      "name": "Check request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ],
+      "parameters": {
+        "jsCode": "\n// Allow-list: only these OpenAI endpoints can be reached through the gateway.\nconst ALLOWED = { responses: 'https://api.openai.com/v1/responses',\n                  embeddings: 'https://api.openai.com/v1/embeddings' };\nconst MAX_BYTES = 6 * 1024 * 1024;   // page images for the vision fallback are sent as base64\nconst b = $json.body || {};\nconst op = String(b.op || '');\nif (!ALLOWED[op]) return [{ json: { ok: false, status: 400, error: 'unknown op' } }];\nif (!b.payload || typeof b.payload !== 'object') return [{ json: { ok: false, status: 400, error: 'payload missing' } }];\nconst size = JSON.stringify(b.payload).length;\nif (size > MAX_BYTES) return [{ json: { ok: false, status: 413, error: 'payload too large' } }];\nconst payload = { ...b.payload };\nif (op === 'responses') payload.store = false;      // never keep document text at OpenAI\nreturn [{ json: { ok: true, url: ALLOWED[op], payload } }];\n"
+      }
+    },
+    {
+      "id": "c3097c2f-529f-437f-878d-8cfcea3cc4c4",
+      "name": "Allowed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        300
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e525bbec-7d61-4897-a932-829ae6d81643",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "6d12b223-01fb-49f5-aea1-4583b9ece494",
+      "name": "Call OpenAI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        280
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.payload) }}",
+        "options": {
+          "timeout": 110000
+        }
+      },
+      "onError": "continueErrorOutput",
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_ME",
+          "name": "<your openAiApi credential>"
+        }
+      }
+    },
+    {
+      "id": "da633b61-ea80-4741-93a0-beacaf7ad642",
+      "name": "Reply: result",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        180
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    },
+    {
+      "id": "c8c8854e-ad15-4ff3-b784-e2f4f5f922c8",
+      "name": "Reply: upstream error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        920,
+        380
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: false, error: 'upstream', detail: String($json.error && ($json.error.message || $json.error)).slice(0, 400) }) }}",
+        "options": {
+          "responseCode": 502
+        }
+      }
+    },
+    {
+      "id": "aa6672cd-c261-4a06-965b-26041dfbdaa0",
+      "name": "Reply: rejected",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        520
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: false, error: $json.error }) }}",
+        "options": {
+          "responseCode": 400
+        }
+      }
+    },
+    {
+      "id": "f9f81669-ee01-41ba-a926-90e690ab0761",
+      "name": "Note: DocIntel AI Gateway",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -40
+      ],
+      "parameters": {
+        "content": "## DocIntel AI Gateway\nKeeps the OpenAI key inside n8n. The DocIntel worker sends `{op, payload}` with the `X-DocIntel-Key` header.\n\n**Allowed ops:** `responses` (extraction, vision fallback), `embeddings` (semantic search).\n**Privacy:** `store:false` is forced; successful and failed executions are not saved, so no document text stays in n8n.",
+        "width": 620,
+        "height": 260
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check request": {
+      "main": [
+        [
+          {
+            "node": "Allowed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Allowed?": {
+      "main": [
+        [
+          {
+            "node": "Call OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply: rejected",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Reply: result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reply: upstream error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "none",
+    "saveManualExecutions": false,
+    "executionTimeout": 150
+  }
+}

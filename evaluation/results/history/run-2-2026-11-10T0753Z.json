@@ -1,0 +1,1783 @@
+{
+ "run_at": "2026-11-10T07:53:25+00:00",
+ "models": "gpt-4.1-mini (text), gpt-4.1-mini (vision), text-embedding-3-small (search)",
+ "files": 96,
+ "documents": {
+  "valid_files": 90,
+  "processed": 90,
+  "unexpected_failures": [],
+  "success_rate_pct": 100.0,
+  "failure_rate_pct": 0.0,
+  "broken_files": 6,
+  "broken_files_handled_pct": 100.0,
+  "status_counts": {
+   "completed": 49,
+   "needs_review": 41,
+   "failed": 6
+  }
+ },
+ "extraction": {
+  "invoices_expected": 141,
+  "invoices_found": 141,
+  "invoices_missed": 0,
+  "extra_invoices": 1,
+  "detection_rate_pct": 100.0,
+  "field_accuracy_pct": {
+   "invoice_number": 99.3,
+   "invoice_date": 100.0,
+   "supplier_name": 100.0,
+   "customer_name": 98.6,
+   "subtotal": 100.0,
+   "tax": 100.0,
+   "total": 100.0,
+   "currency": 99.3
+  },
+  "overall_field_accuracy_pct": 99.6,
+  "invoices_all_fields_correct_pct": 98.6,
+  "line_items_exact_pct": 95.9,
+  "missing_fields_left_empty_pct": 100.0,
+  "invented_values": {
+   "invoice_date": 0,
+   "customer_name": 0,
+   "tax": 0,
+   "invoice_number": 0
+  },
+  "methods": {
+   "llm_text": 85,
+   "llm_vision": 13,
+   "spreadsheet_columns": 43
+  }
+ },
+ "validation": {
+  "planted_issue_detection_pct": {
+   "AMBIGUOUS_DATE": 100.0,
+   "CROSS_CHECK_MISMATCH": 100.0,
+   "DUPLICATE_INVOICE": 100.0,
+   "LEDGER_MATCH": 100.0,
+   "LINE_ITEMS_MISMATCH": 100.0,
+   "LINE_ITEM_MATH": 100.0,
+   "MISSING_FIELD": 100.0,
+   "READ_FROM_IMAGE": 100.0,
+   "TOTAL_MISMATCH": 100.0
+  },
+  "planted_issues_total": 55,
+  "planted_issues_caught": 55,
+  "clean_invoices": 105,
+  "clean_invoices_flagged": 10,
+  "false_flag_rate_pct": 9.5,
+  "false_flag_codes": {
+   "READ_FROM_IMAGE": 7,
+   "LINE_ITEM_MATH": 2,
+   "LINE_ITEMS_MISMATCH": 1,
+   "MISSING_FIELD": 1
+  }
+ },
+ "speed": {
+  "upload_seconds": 1.0,
+  "wall_clock_seconds": 329.5,
+  "pages": 106,
+  "doc_ms_p50": 4618,
+  "doc_ms_p95": 13081,
+  "doc_ms_max": 17886,
+  "page_ms_p50": 4530,
+  "documents_per_minute": 17.5,
+  "pages_per_minute": 19.3
+ },
+ "by_kind": {
+  "corrupted": {
+   "files": 5,
+   "field_accuracy_pct": null,
+   "median_ms": 65
+  },
+  "csv_eu": {
+   "files": 1,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 883
+  },
+  "csv_us": {
+   "files": 1,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 1175
+  },
+  "image_photo": {
+   "files": 8,
+   "field_accuracy_pct": 96.9,
+   "median_ms": 7718
+  },
+  "image_png": {
+   "files": 5,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 6138
+  },
+  "image_poor": {
+   "files": 4,
+   "field_accuracy_pct": 93.8,
+   "median_ms": 7982
+  },
+  "image_tiff": {
+   "files": 2,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 9786
+  },
+  "locked": {
+   "files": 1,
+   "field_accuracy_pct": null,
+   "median_ms": 98
+  },
+  "pdf_ambiguous_date": {
+   "files": 2,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3484
+  },
+  "pdf_bad_line": {
+   "files": 4,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 4441
+  },
+  "pdf_batch": {
+   "files": 2,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 15092
+  },
+  "pdf_conflict": {
+   "files": 1,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 6036
+  },
+  "pdf_digital": {
+   "files": 30,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3990
+  },
+  "pdf_duplicate": {
+   "files": 2,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 8481
+  },
+  "pdf_no_customer": {
+   "files": 3,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3300
+  },
+  "pdf_no_date": {
+   "files": 3,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3933
+  },
+  "pdf_no_tax": {
+   "files": 2,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3806
+  },
+  "pdf_scanned": {
+   "files": 12,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 10167
+  },
+  "pdf_wrong_total": {
+   "files": 5,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3828
+  },
+  "xls_register": {
+   "files": 1,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 1208
+  },
+  "xlsx_layout": {
+   "files": 1,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 5532
+  },
+  "xlsx_ledger": {
+   "files": 1,
+   "field_accuracy_pct": 100.0,
+   "median_ms": 3933
+  }
+ },
+ "rows": [
+  {
+   "file": "digital_01_INV-20260001.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260001",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_02_BL-20260002.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260002",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_03_TX-20260003.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260003",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_04_INV-20260004.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260004",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "digital_05_BL-20260005.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260005",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_06_TX-20260006.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260006",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_07_INV-20260007.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260007",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_08_BL-20260008.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260008",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "digital_09_TX-20260009.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260009",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_10_INV-20260010.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260010",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "digital_11_BL-20260011.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260011",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_12_TX-20260012.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260012",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_13_INV-20260013.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260013",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_14_BL-20260014.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260014",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_15_TX-20260015.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260015",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "digital_16_INV-20260016.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260016",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_17_BL-20260017.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260017",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "digital_18_TX-20260018.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260018",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_19_INV-20260019.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260019",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_20_BL-20260020.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260020",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_21_TX-20260021.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260021",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_22_INV-20260022.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260022",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_23_BL-20260023.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260023",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_24_TX-20260024.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260024",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_25_INV-20260025.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260025",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_26_BL-20260026.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260026",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_27_TX-20260027.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260027",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_28_INV-20260028.pdf",
+   "kind": "pdf_digital",
+   "invoice": "INV-20260028",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_29_BL-20260029.pdf",
+   "kind": "pdf_digital",
+   "invoice": "BL-20260029",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "digital_30_TX-20260030.pdf",
+   "kind": "pdf_digital",
+   "invoice": "TX-20260030",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "issue_wrong_total_INV-20260031.pdf",
+   "kind": "pdf_wrong_total",
+   "invoice": "INV-20260031",
+   "wrong_fields": [],
+   "expected_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "got_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_wrong_total_BL-20260032.pdf",
+   "kind": "pdf_wrong_total",
+   "invoice": "BL-20260032",
+   "wrong_fields": [],
+   "expected_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "got_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_wrong_total_TX-20260033.pdf",
+   "kind": "pdf_wrong_total",
+   "invoice": "TX-20260033",
+   "wrong_fields": [],
+   "expected_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "got_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_wrong_total_INV-20260034.pdf",
+   "kind": "pdf_wrong_total",
+   "invoice": "INV-20260034",
+   "wrong_fields": [],
+   "expected_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "got_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_wrong_total_BL-20260035.pdf",
+   "kind": "pdf_wrong_total",
+   "invoice": "BL-20260035",
+   "wrong_fields": [],
+   "expected_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "got_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_bad_line_INV-20260036.pdf",
+   "kind": "pdf_bad_line",
+   "invoice": "INV-20260036",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "got_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_bad_line_BL-20260037.pdf",
+   "kind": "pdf_bad_line",
+   "invoice": "BL-20260037",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "got_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_bad_line_TX-20260038.pdf",
+   "kind": "pdf_bad_line",
+   "invoice": "TX-20260038",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "got_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_bad_line_INV-20260039.pdf",
+   "kind": "pdf_bad_line",
+   "invoice": "INV-20260039",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "got_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_date_INV-20260040.pdf",
+   "kind": "pdf_no_date",
+   "invoice": "INV-20260040",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_date_BL-20260041.pdf",
+   "kind": "pdf_no_date",
+   "invoice": "BL-20260041",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_date_TX-20260042.pdf",
+   "kind": "pdf_no_date",
+   "invoice": "TX-20260042",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_customer_INV-20260043.pdf",
+   "kind": "pdf_no_customer",
+   "invoice": "INV-20260043",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_customer_BL-20260044.pdf",
+   "kind": "pdf_no_customer",
+   "invoice": "BL-20260044",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_customer_TX-20260045.pdf",
+   "kind": "pdf_no_customer",
+   "invoice": "TX-20260045",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_tax_INV-20260046.pdf",
+   "kind": "pdf_no_tax",
+   "invoice": "INV-20260046",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_no_tax_BL-20260047.pdf",
+   "kind": "pdf_no_tax",
+   "invoice": "BL-20260047",
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_ambiguous_date_TX-20260048.pdf",
+   "kind": "pdf_ambiguous_date",
+   "invoice": "TX-20260048",
+   "wrong_fields": [],
+   "expected_issues": [
+    "AMBIGUOUS_DATE"
+   ],
+   "got_issues": [
+    "AMBIGUOUS_DATE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "issue_ambiguous_date_TX-20260049.pdf",
+   "kind": "pdf_ambiguous_date",
+   "invoice": "TX-20260049",
+   "wrong_fields": [],
+   "expected_issues": [
+    "AMBIGUOUS_DATE"
+   ],
+   "got_issues": [
+    "AMBIGUOUS_DATE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "scanned_01_INV-20260050.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "INV-20260050",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_02_BL-20260051.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "BL-20260051",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "scanned_03_TX-20260052.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "TX-20260052",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_04_INV-20260053.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "INV-20260053",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_05_BL-20260054.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "BL-20260054",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_06_TX-20260055.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "TX-20260055",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_07_INV-20260056.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "INV-20260056",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_08_BL-20260057.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "BL-20260057",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_09_TX-20260058.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "TX-20260058",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_10_INV-20260059.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "INV-20260059",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "completed"
+  },
+  {
+   "file": "scanned_11_BL-20260060.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "BL-20260060",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "scanned_12_TX-20260061.pdf",
+   "kind": "pdf_scanned",
+   "invoice": "TX-20260061",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LINE_ITEM_MATH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_01_INV-20260062.jpg",
+   "kind": "image_photo",
+   "invoice": "INV-20260062",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_02_BL-20260063.jpg",
+   "kind": "image_photo",
+   "invoice": "BL-20260063",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_03_TX-20260064.jpg",
+   "kind": "image_photo",
+   "invoice": "TX-20260064",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_04_INV-20260065.jpg",
+   "kind": "image_photo",
+   "invoice": "INV-20260065",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_05_BL-20260066.jpg",
+   "kind": "image_photo",
+   "invoice": "BL-20260066",
+   "wrong_fields": [
+    "customer_name",
+    "currency"
+   ],
+   "expected_issues": [],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_06_TX-20260067.jpg",
+   "kind": "image_photo",
+   "invoice": "TX-20260067",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "photo_07_INV-20260068.jpg",
+   "kind": "image_photo",
+   "invoice": "INV-20260068",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "photo_08_BL-20260069.jpg",
+   "kind": "image_photo",
+   "invoice": "BL-20260069",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "poor_01_INV-20260070.jpg",
+   "kind": "image_poor",
+   "invoice": "INV-20260070",
+   "wrong_fields": [],
+   "expected_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "got_issues": [
+    "LINE_ITEMS_MISMATCH",
+    "LINE_ITEM_MATH",
+    "READ_FROM_IMAGE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "poor_02_BL-20260071.jpg",
+   "kind": "image_poor",
+   "invoice": "BL-20260071",
+   "wrong_fields": [
+    "invoice_number",
+    "customer_name"
+   ],
+   "expected_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "poor_03_INV-20260072.jpg",
+   "kind": "image_poor",
+   "invoice": "INV-20260072",
+   "wrong_fields": [],
+   "expected_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "got_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "poor_04_BL-20260073.jpg",
+   "kind": "image_poor",
+   "invoice": "BL-20260073",
+   "wrong_fields": [],
+   "expected_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "got_issues": [
+    "READ_FROM_IMAGE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "clean_01_INV-20260074.png",
+   "kind": "image_png",
+   "invoice": "INV-20260074",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "clean_02_BL-20260075.png",
+   "kind": "image_png",
+   "invoice": "BL-20260075",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "clean_03_TX-20260076.png",
+   "kind": "image_png",
+   "invoice": "TX-20260076",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "clean_04_INV-20260077.png",
+   "kind": "image_png",
+   "invoice": "INV-20260077",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "clean_05_BL-20260078.png",
+   "kind": "image_png",
+   "invoice": "BL-20260078",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "tiff_multipage_1.tiff",
+   "kind": "image_tiff",
+   "invoice": "INV-20260079",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "tiff_multipage_1.tiff",
+   "kind": "image_tiff",
+   "invoice": "BL-20260080",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "tiff_multipage_2.tiff",
+   "kind": "image_tiff",
+   "invoice": "INV-20260081",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "tiff_multipage_2.tiff",
+   "kind": "image_tiff",
+   "invoice": "BL-20260082",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_1_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "INV-20260083",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_1_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "BL-20260084",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_1_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "TX-20260085",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_1_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "INV-20260086",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_1_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "BL-20260087",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_1_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "TX-20260088",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_2_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "INV-20260089",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_2_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "BL-20260090",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_2_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "TX-20260091",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_2_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "INV-20260092",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_2_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "BL-20260093",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "batch_2_six_invoices.pdf",
+   "kind": "pdf_batch",
+   "invoice": "TX-20260094",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "dup_scan_of_INV-20260001.pdf",
+   "kind": "pdf_duplicate",
+   "invoice": "INV-20260001",
+   "wrong_fields": [],
+   "expected_issues": [
+    "DUPLICATE_INVOICE"
+   ],
+   "got_issues": [
+    "DUPLICATE_INVOICE",
+    "READ_FROM_IMAGE",
+    "SELF_CHECK_REREAD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "dup_resent_BL-20260005.pdf",
+   "kind": "pdf_duplicate",
+   "invoice": "BL-20260005",
+   "wrong_fields": [],
+   "expected_issues": [
+    "DUPLICATE_INVOICE"
+   ],
+   "got_issues": [
+    "DUPLICATE_INVOICE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "conflict_revised_BL-20260008.pdf",
+   "kind": "pdf_conflict",
+   "invoice": "BL-20260008",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "BL-20260002",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "TX-20260003",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260004",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "TX-20260006",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260007",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "TX-20260009",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260010",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "BL-20260011",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "TX-20260012",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260013",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "BL-20260014",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "TX-20260015",
+   "wrong_fields": [],
+   "expected_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "got_issues": [
+    "CROSS_CHECK_MISMATCH",
+    "LINE_ITEMS_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260016",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "BL-20260017",
+   "wrong_fields": [],
+   "expected_issues": [
+    "LEDGER_MATCH"
+   ],
+   "got_issues": [
+    "LEDGER_MATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260095",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260096",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260097",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260098",
+   "wrong_fields": [],
+   "expected_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "got_issues": [
+    "TOTAL_MISMATCH"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": null,
+   "wrong_fields": [],
+   "expected_issues": [
+    "MISSING_FIELD"
+   ],
+   "got_issues": [
+    "MISSING_FIELD"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260100",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "needs_review"
+  },
+  {
+   "file": "ledger_q1_2026.xlsx",
+   "kind": "xlsx_ledger",
+   "invoice": "INV-20260100",
+   "wrong_fields": [],
+   "expected_issues": [
+    "DUPLICATE_INVOICE"
+   ],
+   "got_issues": [
+    "DUPLICATE_INVOICE"
+   ],
+   "status": "needs_review"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260101",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260102",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260103",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260104",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260105",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260106",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260107",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "vendors_legacy_2026.xls",
+   "kind": "xls_register",
+   "invoice": "TX-20260108",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260109",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260110",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260111",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260112",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260113",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260114",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_us.csv",
+   "kind": "csv_us",
+   "invoice": "INV-20260115",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260116",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260117",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260118",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260119",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260120",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260121",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "export_eu.csv",
+   "kind": "csv_eu",
+   "invoice": "INV-20260122",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "invoice_form_layout.xlsx",
+   "kind": "xlsx_layout",
+   "invoice": "INV-20260123",
+   "wrong_fields": [],
+   "expected_issues": [],
+   "got_issues": [],
+   "status": "completed"
+  },
+  {
+   "file": "broken_truncated.pdf",
+   "kind": "corrupted",
+   "status": "failed",
+   "error": "CORRUPTED_FILE",
+   "expected_error": "CORRUPTED_FILE",
+   "ok": true
+  },
+  {
+   "file": "broken_random_bytes.pdf",
+   "kind": "corrupted",
+   "status": "failed",
+   "error": "CORRUPTED_FILE",
+   "expected_error": "CORRUPTED_FILE",
+   "ok": true
+  },
+  {
+   "file": "broken_empty.png",
+   "kind": "corrupted",
+   "status": "failed",
+   "error": "EMPTY_FILE",
+   "expected_error": "EMPTY_FILE",
+   "ok": true
+  },
+  {
+   "file": "broken_cut.xlsx",
+   "kind": "corrupted",
+   "status": "failed",
+   "error": "CORRUPTED_FILE",
+   "expected_error": "CORRUPTED_FILE",
+   "ok": true
+  },
+  {
+   "file": "locked_password.pdf",
+   "kind": "locked",
+   "status": "failed",
+   "error": "PASSWORD_PROTECTED",
+   "expected_error": "PASSWORD_PROTECTED",
+   "ok": true
+  },
+  {
+   "file": "not_really_an_image.jpg",
+   "kind": "corrupted",
+   "status": "failed",
+   "error": "CORRUPTED_FILE",
+   "expected_error": "CORRUPTED_FILE",
+   "ok": true
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+# secrets and local settings
+.env
+.env.*
+!.env.example
+frontend/.env*.local
+# build output and caches
+__pycache__/
+*.pyc
+.pytest_cache/
+frontend/node_modules/
+frontend/.next/
+frontend/.vercel/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+# generated data (re-create with dataset/generate.py)
+dataset/out/
+dataset/samples/
+evaluation/results/raw/
+.DS_Store

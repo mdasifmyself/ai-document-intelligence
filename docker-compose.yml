@@ -1,0 +1,61 @@
+# DocIntel – full backend on one machine:  cp .env.example .env  &&  docker compose up -d --build
+# API docs: http://localhost:8000/docs     (the web app runs separately: see frontend/README.md)
+name: docintel
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: docintel
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-docintel}
+      POSTGRES_DB: docintel
+    volumes: [db-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docintel"]
+      interval: 5s
+      retries: 20
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "128mb", "--maxmemory-policy", "noeviction"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 20
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://docintel:${POSTGRES_PASSWORD:-docintel}@db:5432/docintel
+      REDIS_URL: redis://redis:6379/0
+    volumes: [files:/data]
+    ports: ["8000:8000"]
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    restart: unless-stopped
+
+  worker:
+    build: ./backend
+    command: ["python", "-m", "app.worker"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://docintel:${POSTGRES_PASSWORD:-docintel}@db:5432/docintel
+      REDIS_URL: redis://redis:6379/0
+    volumes: [files:/data]
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    deploy:
+      replicas: 2          # add workers to process more documents in parallel
+    stop_grace_period: 2m  # on restart, a worker first finishes its current document
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  redis-data:
+  files:
