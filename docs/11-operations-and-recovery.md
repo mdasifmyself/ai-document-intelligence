@@ -47,5 +47,5 @@
 
 `backend/tests/test_failures.py` and `test_ops.py` cover broken files, unsupported and oversized uploads, AI outage
 then reprocessing, AI retry and give-up behaviour, the failure callback (timeout), the recovery sweeper (requeue and
-give-up after 3 attempts), Excel export and the system status endpoint. A live crash-recovery test (killing a worker
-in the middle of the 1,000-page batch) is described in [08-evaluation-report.md](08-evaluation-report.md).
+give-up after 3 attempts), one automatic retry of temporary failures, forked jobs using their own database
+connections, Excel export and the system status endpoint.

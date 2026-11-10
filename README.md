@@ -25,16 +25,16 @@ live system. Full report: [docs/08-evaluation-report.md](docs/08-evaluation-repo
 
 | Metric | Result |
 |---|---|
-| Field accuracy (8 fields × 141 invoices) | **{{FIELD_ACC}}** |
-| Invoices with every field correct | {{ALL_FIELDS}} |
-| Invoices found (incl. splitting multi-invoice PDFs and TIFFs) | {{FOUND}} |
-| Values invented where nothing was printed | **{{INVENTED}}** |
-| Planted problems caught (wrong totals, duplicates, conflicts, missing fields…) | **{{PLANTED}}** |
-| Valid files processed / failure rate | {{SUCCESS}} / {{FAILURE}} |
-| Broken or locked files stopped with a clear reason | {{BROKEN}} |
-| Median time per file (incl. OCR and AI) | {{MEDIAN}} |
-| 1,000-page batch PDF | {{BIG}} |
-| Automated tests | 90 passed, 87 % line coverage |
+| Field accuracy (8 fields × 141 invoices) | **100.0 %** |
+| Invoices with every field correct | 100.0 % |
+| Invoices found (incl. splitting multi-invoice PDFs and TIFFs) | 141 / 141 |
+| Values invented where nothing was printed | **0** |
+| Planted problems caught (wrong totals, duplicates, conflicts, missing fields…) | **55/55** |
+| Valid files processed / failure rate | 100.0 % / 0.0 % |
+| Broken or locked files stopped with a clear reason | 100.0 % of 6 |
+| Median time per file (incl. OCR and AI) | 5.0 s (scans ≈ 15 s: read twice) |
+| 1,000-page batch PDF | 1,000 pages, 789/789 invoices found, 100.0 % field accuracy, 17.3 min |
+| Automated tests | 93 passed, 87 % line coverage |
 
 ## How it works
 

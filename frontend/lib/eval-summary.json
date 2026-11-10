@@ -1,1 +1,12 @@
-null
+{
+ "run_at": "2026-11-10T09:35:15+00:00",
+ "field_accuracy": 100.0,
+ "success_rate": 100.0,
+ "broken_handled": 100.0,
+ "planted_caught": "55/55",
+ "doc_ms_p50": 4965,
+ "nulls_kept": 100.0,
+ "big_pages": 1000,
+ "big_minutes": 17.3,
+ "big_invoices": 789
+}

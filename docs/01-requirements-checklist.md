@@ -47,7 +47,7 @@ Status ✅ = implemented and verified by an automated test, the measured evaluat
 | Document search | `GET /search` (keyword / semantic / hybrid + filters), `GET /documents?q=` | `test_api::test_search_keyword_semantic_and_filters` | ✅ |
 | Manual corrections | `PATCH /invoices/{id}` (history, re-validation), `POST /invoices/{id}/approve` | `test_api::test_manual_correction_revalidates_and_keeps_history` | ✅ |
 | Failed-job reprocessing | `POST /documents/{id}/reprocess`, `POST /jobs/reprocess-failed`, `GET /jobs/failed` | `test_failures::test_ai_outage_then_reprocess`, `test_single_reprocess_endpoint` | ✅ |
-| Background processing for OCR and AI | Redis + RQ workers; upload returns at once; failure callback; recovery sweeper | `test_ops::test_stuck_document_is_requeued_automatically`; live crash-recovery test | ✅ |
+| Background processing for OCR and AI | Redis + RQ workers; upload returns at once; failure callback; recovery sweeper | `test_ops::test_stuck_document_is_requeued_automatically`, `test_temporary_failure_is_retried_once_automatically`, `test_forked_process_uses_its_own_database_connections` | ✅ |
 
 ## Task 5: Database and search
 
@@ -77,9 +77,9 @@ Status ✅ = implemented and verified by an automated test, the measured evaluat
 
 | Requirement | Implementation | Evidence | Status |
 |---|---|---|---|
-| Tests: document processing, OCR, spreadsheet parsing | `test_readers.py`, `test_units.py` | 90 passed | ✅ |
-| Tests: AI extraction, validation | `test_api.py` (fake model incl. a "lying" model), `test_units.py` | 90 passed | ✅ |
-| Tests: API endpoints, failure scenarios | `test_api.py`, `test_failures.py`, `test_ops.py` | 90 passed | ✅ |
+| Tests: document processing, OCR, spreadsheet parsing | `test_readers.py`, `test_units.py` | 93 passed | ✅ |
+| Tests: AI extraction, validation | `test_api.py` (fake model incl. a "lying" model), `test_units.py` | 93 passed | ✅ |
+| Tests: API endpoints, failure scenarios | `test_api.py`, `test_failures.py`, `test_ops.py` | 93 passed | ✅ |
 | Labelled dataset | `dataset/generate.py` (96 files + answer key; 1,000-page batch) | `dataset/README.md` | ✅ |
 | Report actual accuracy, processing time, success rate, failure rate | `evaluation/run_eval.py` against the live system | [08-evaluation-report.md](08-evaluation-report.md) | ✅ |
 

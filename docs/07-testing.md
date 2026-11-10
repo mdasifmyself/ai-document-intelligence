@@ -2,7 +2,7 @@
 
 Three layers of testing, each run many times during development:
 
-1. **Automated test suite** (pytest): 90 tests against a real PostgreSQL + pgvector, real Redis and real Tesseract
+1. **Automated test suite** (pytest): 93 tests against a real PostgreSQL + pgvector, real Redis and real Tesseract
    OCR. Runs in GitHub Actions on every push, and inside the production server before each deployment.
 2. **Measured evaluation (backtesting)** on a labelled dataset of 96 files and a 1,000-page batch, run against the
    live system from a clean state after every important change. See [08-evaluation-report.md](08-evaluation-report.md).
@@ -31,11 +31,11 @@ can be switched to "outage" or to "lies" (inventing values) to test those paths.
 | `test_readers.py` | 10 | Digital PDF text layer; scanned PDF → OCR with confidence; sideways photo rotated by OCR orientation detection; noisy JPEG and multi-page TIFF; password-protected PDF; truncated image read with a warning; header synonym matching; XLSX with invoices + line items + extra sheet (cell evidence such as `Invoices!G2`); legacy XLS; EU-style CSV; corrupted spreadsheet |
 | `test_api.py` | 13 | Access code required; upload → background job → result with evidence for a digital PDF (every stage in the history); scanned PDF, noisy photo, XLSX and CSV in one upload; validation flags and the review queue; missing fields stay null; **a model that invents values is blocked**; duplicates (same file, same invoice) and PDF↔Excel mismatch; batch PDF split into 3 invoices with page locations; manual correction re-validates and keeps history, approval; invalid corrections rejected; keyword, semantic and hybrid search with filters; page text, page image, original download, delete; dashboard stats and meta |
 | `test_failures.py` | 7 functions (11 cases) | Broken files fail with the right code (empty, random bytes, text named .jpg, password PDF, cut XLSX); unsupported and oversized files rejected at upload; too many files; AI outage → `AI_UNAVAILABLE` → bulk reprocess succeeds; single reprocess; AI client retries 503/429 then succeeds; gives up at once on 401 |
-| `test_ops.py` | 6 | Excel export (all six sheets, values, highlighted review rows, issue codes) and filtered export; recovery sweeper requeues a stuck document and finishes it; a document that keeps crashing is failed after 3 attempts (no endless loop); RQ failure callback marks a timeout; system status endpoint |
+| `test_ops.py` | 9 | Excel export (all six sheets, values, highlighted review rows, issue codes) and filtered export; recovery sweeper requeues a stuck document and finishes it; a document that keeps crashing is failed after 3 attempts (no endless loop); RQ failure callback marks a timeout; system status endpoint; automatic retry of temporary failures (and no retry of file problems); forked processes use their own database connections |
 
 ## Latest result
 
-`90 passed` · line coverage 87 % of `backend/app` · machine-readable results: `evaluation/results/test-results.xml`
+`93 passed` · line coverage 87 % of `backend/app` · machine-readable results: `evaluation/results/test-results.xml`
 (JUnit) and `evaluation/results/coverage.xml`.
 
 ## Bugs found by testing and evaluation (and fixed)

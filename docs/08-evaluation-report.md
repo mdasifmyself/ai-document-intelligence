@@ -78,7 +78,20 @@ differences all · unreadable photos sent to review 4/4.
 
 ## 4. Results: 1,000-page batch PDF
 
-{{BIG_SECTION}}
+A single digital PDF of **1,000 pages containing 789 invoices** (1–3 pages each), processed as one upload.
+
+| Metric | Result |
+|---|---|
+| Invoices found (automatic splitting) | **789 / 789** |
+| Field accuracy (8 fields × 789 invoices) | **100.0 %** |
+| Invoices with every field correct | **100.0 %** |
+| Line items exactly right | **100.0 %** |
+| Clean invoices wrongly flagged | 0.0 % |
+| Total processing time | **17.3 minutes** (57.8 pages/min, about 46 invoices/min) |
+
+Reading all 1,000 pages took about one second (text layer); the time is almost all AI extraction (789
+calls, 4 in parallel), so it scales with the AI rate limit and the number of workers. A restart in the middle
+resumes from the saved AI answers instead of starting over.
 
 ## 5. Run history: what each run found and what was fixed
 
