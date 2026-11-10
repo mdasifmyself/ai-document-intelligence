@@ -1,7 +1,12 @@
 # How to use DocIntel
 
-Demo: **https://docintel-invoice-ai.vercel.app** (the access code is in the submission email; a link with
-`?code=…` fills it in automatically and the code is then stored only in your browser).
+| | |
+|---|---|
+| **Demo** | https://docintel-invoice-ai.vercel.app |
+| **Access code** | **`cg-66cca54e`** |
+| **One-click sign-in** | https://docintel-invoice-ai.vercel.app/dashboard?code=cg-66cca54e |
+
+Enter the code once on the sign-in screen (or use the one-click link). It is then stored only in your browser.
 
 ## The screens
 

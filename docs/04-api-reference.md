@@ -4,7 +4,11 @@ Interactive documentation (try every endpoint in the browser): **`/api/docs`** o
 for example https://docintel-invoice-ai.vercel.app/api/docs. The OpenAPI schema is at `/api/openapi.json`.
 
 All endpoints are under `/api/v1`. Send the access code in the header `X-Access-Code: <code>`
-(or `Authorization: Bearer <code>`). `/health` and `/meta` are open.
+(or `Authorization: Bearer <code>`). `/health` and `/meta` are open. The demo's access code is **`cg-66cca54e`**:
+
+```bash
+curl -H "X-Access-Code: cg-66cca54e" https://docintel-invoice-ai.vercel.app/api/v1/stats
+```
 
 ## Endpoints
 

@@ -63,7 +63,7 @@ export function Gate({ children }: { children: ReactNode }) {
           <KeyRound size={22} />
         </div>
         <h2>Enter the demo access code</h2>
-        <p className="muted">The code is in the email that shared this demo. It keeps the demo private and protects the AI budget.</p>
+        <p className="muted">The code is in the email that shared this demo and at the top of the project README on GitHub. It protects the AI budget.</p>
         <input className="input" autoFocus placeholder="Access code" value={value} onChange={(e) => setValue(e.target.value)} aria-label="Access code"
           autoComplete="off" autoCapitalize="none" spellCheck={false} />
         {error && <div className="notice err small">{error}</div>}

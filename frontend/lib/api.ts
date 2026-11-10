@@ -51,7 +51,7 @@ export class ApiError extends Error {
 /** Plain-language message for any failed request. */
 export function friendly(status: number, detail?: string): string {
   if (status === 0) return "Can’t reach the server. Check your internet connection; the page retries by itself.";
-  if (status === 401) return "The access code was not accepted. Enter the code from the email again.";
+  if (status === 401) return "The access code was not accepted. Enter the code again (it is in the email and the README).";
   if (status === 413) return detail || "The upload is too large. Use files up to 50 MB, at most 50 at a time.";
   if (status === 429) return "Too many requests in a short time. Please wait a minute and try again.";
   if (status === 404) return detail || "This item no longer exists. It may have been deleted.";

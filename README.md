@@ -4,8 +4,21 @@ DocIntel reads invoices, receipts, scanned PDFs, phone photos, TIFF, Excel and C
 with AI, **proves every value against the document**, checks all the arithmetic, finds duplicates and differences
 between documents, sends only the unsure cases to a person, and makes everything searchable and exportable.
 
-**Live demo:** https://docintel-invoice-ai.vercel.app (access code in the submission email) ·
-**API docs:** https://docintel-invoice-ai.vercel.app/api/docs
+## Try the live demo
+
+| | |
+|---|---|
+| **Live demo** | https://docintel-invoice-ai.vercel.app |
+| **Access code** | **`cg-66cca54e`** |
+| **One-click sign-in** (fills in the code) | https://docintel-invoice-ai.vercel.app/dashboard?code=cg-66cca54e |
+| **API docs** | https://docintel-invoice-ai.vercel.app/api/docs (enter the code in the `X-Access-Code` field of any endpoint) |
+
+**First two minutes:** sign in → **Upload** → **Process all sample files** (12 prepared files: digital and scanned
+PDFs, phone photos, TIFF, Excel, CSV, a broken file) → wait a minute or two → **Review queue** → open an invoice.
+Step-by-step guide: [docs/05-how-to-use.md](docs/05-how-to-use.md).
+
+The code only opens this demo; it is published here on purpose so reviewers can sign in. A daily AI budget on the
+server limits the cost, and the code can be changed at any time.
 
 | | |
 |---|---|
