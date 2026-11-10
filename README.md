@@ -119,5 +119,5 @@ docs/         documentation
 
 ## Built with AI assistance
 
-Built by **Md Asif** verified by the automated tests and the
+Built by **Md Asif**, verified by the automated tests and the
 measured evaluation. Disclosure and prompts: [docs/09-ai-prompts-and-disclosure.md](docs/09-ai-prompts-and-disclosure.md).
