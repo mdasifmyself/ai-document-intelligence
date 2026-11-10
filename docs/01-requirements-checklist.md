@@ -94,7 +94,7 @@ Status ✅ = implemented and verified by an automated test, the measured evaluat
 | 5 | PDF, image, Excel and CSV pipelines | `backend/app/pipeline/` | ✅ |
 | 6 | Automated tests and test results | `backend/tests/`, `evaluation/results/test-results.xml`, CI | ✅ |
 | 7 | Evaluation report with actual measured metrics | [08-evaluation-report.md](08-evaluation-report.md) | ✅ |
-| 8 | Recorded walkthrough of the working application | link in the submission email | recorded separately |
+| 8 | Walkthrough of the working application | screen-by-screen guide in [05-how-to-use.md](05-how-to-use.md); live demonstration on a call on request | ✅ |
 | 9 | AI prompts and disclosure of AI-assisted development | [09-ai-prompts-and-disclosure.md](09-ai-prompts-and-disclosure.md) | ✅ |
 
 ## Non-functional expectations
