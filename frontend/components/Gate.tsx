@@ -59,7 +59,7 @@ export function Gate({ children }: { children: ReactNode }) {
   return (
     <div style={{ display: "grid", placeItems: "center", minHeight: "60vh" }}>
       <form className="card card-pad stack" onSubmit={submit} style={{ width: "min(420px, 100%)", padding: 28 }}>
-        <div className="big-ico" style={{ width: 48, height: 48, borderRadius: 14, background: "var(--cyan-50)", color: "#0786a8", display: "grid", placeItems: "center" }}>
+        <div className="big-ico" style={{ width: 48, height: 48, borderRadius: 14, background: "var(--brand-50)", color: "var(--brand)", display: "grid", placeItems: "center" }}>
           <KeyRound size={22} />
         </div>
         <h2>Enter the demo access code</h2>

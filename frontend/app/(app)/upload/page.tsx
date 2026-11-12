@@ -186,7 +186,7 @@ function UploadPage() {
             {[["Checked", "The real file type is checked from its content, not its name."], ["Read", "Text PDFs are read directly. Scans and photos go through OCR. Every Excel sheet is read."],
               ["Extracted", "AI finds the invoice fields and must quote where each value came from. No quote, no value."],
               ["Verified", "Totals, tax, line items, duplicates and other documents are checked automatically."]].map(([t, d]) => (
-              <div key={t} className="row" style={{ alignItems: "flex-start" }}><CheckCircle2 size={17} color="var(--cyan-600)" style={{ marginTop: 2, flex: "none" }} /><span className="small"><b style={{ fontWeight: 500 }}>{t}.</b> <span className="muted">{d}</span></span></div>
+              <div key={t} className="row" style={{ alignItems: "flex-start" }}><CheckCircle2 size={17} color="var(--brand)" style={{ marginTop: 2, flex: "none" }} /><span className="small"><b style={{ fontWeight: 500 }}>{t}.</b> <span className="muted">{d}</span></span></div>
             ))}
           </div>
         </div>

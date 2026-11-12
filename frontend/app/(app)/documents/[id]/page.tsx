@@ -138,7 +138,7 @@ function Detail() {
                 </div>
                 <div style={{ maxHeight: many ? 260 : undefined, overflowY: many ? "auto" : undefined }} className="stack">
                   {shown.slice(0, 300).map((i) => (
-                    <button key={i.id} onClick={() => setActive(i.id)} className="mini-row" style={{ border: current?.id === i.id ? "1.5px solid var(--cyan)" : "1.5px solid transparent", cursor: "pointer", textAlign: "left", background: current?.id === i.id ? "var(--cyan-50)" : undefined, gap: 8 }}>
+                    <button key={i.id} onClick={() => setActive(i.id)} className="mini-row" style={{ border: current?.id === i.id ? "1.5px solid var(--brand)" : "1.5px solid transparent", cursor: "pointer", textAlign: "left", background: current?.id === i.id ? "var(--brand-50)" : undefined, gap: 8 }}>
                       <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         <b style={{ fontWeight: 500 }}>{i.invoice_number || "No number"}</b> <span className="faint small">{i.supplier_name}</span>
                       </span>

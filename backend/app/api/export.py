@@ -22,7 +22,7 @@ from ..security import require_access
 
 router = APIRouter(tags=["Export"], dependencies=[Depends(require_access)])
 
-HEAD_FILL = PatternFill("solid", fgColor="0B1220")
+HEAD_FILL = PatternFill("solid", fgColor="1C3461")   # Cottage Home Care navy
 HEAD_FONT = Font(bold=True, color="FFFFFF")
 REVIEW_FILL = PatternFill("solid", fgColor="FDF6E7")
 ERROR_FILL = PatternFill("solid", fgColor="FDEEEE")

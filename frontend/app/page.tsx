@@ -53,7 +53,7 @@ export default function Landing() {
       <section className="land-hero">
         <div>
           {PREPARED_FOR && <span className="tag-prepared">Prepared for {PREPARED_FOR}</span>}
-          <h1 style={{ marginTop: 18 }}>Invoices in.<br />Checked data out.</h1>
+          <h1 style={{ marginTop: 18 }}>Invoices in.<br /><span className="text-grad">Checked data out.</span></h1>
           <p className="lead">DocIntel reads invoices, receipts, scans, photos, Excel and CSV files, extracts the invoice data with AI, proves every value against the document, checks the numbers, and sends only the unsure cases to a person.</p>
           <div className="row wrap" style={{ marginTop: 28, gap: 10 }}>
             <Link href="/upload" className="btn btn-primary btn-lg">Try it with sample files <ArrowRight size={17} /></Link>
@@ -76,19 +76,19 @@ export default function Landing() {
       </section>
 
       <section className="land-sec" style={{ paddingTop: 8 }}>
-        <div className="card card-pad row between wrap" style={{ gap: 16 }}>
+        <div className="band card-pad row between wrap" style={{ gap: 16, padding: "26px 28px" }}>
           <div style={{ maxWidth: 520 }}>
-            <h2>Built for messy, real-world files</h2>
-            <p className="muted small" style={{ marginTop: 6 }}>Nothing is guessed: a value without proof stays empty and is flagged for review.</p>
+            <h2>Built for messy, <span className="text-orange">real-world files</span></h2>
+            <p className="small" style={{ marginTop: 6 }}>Nothing is guessed: a value without proof stays empty and is flagged for review.</p>
           </div>
           <div className="row wrap" style={{ gap: 8, maxWidth: 560 }}>
-            {HANDLES.map((h) => <span key={h} className="pill" style={{ height: 30, padding: "0 12px", background: "var(--surface-2)", border: "1px solid var(--line)" }}>{h}</span>)}
+            {HANDLES.map((h) => <span key={h} className="pill" style={{ height: 30, padding: "0 12px" }}>{h}</span>)}
           </div>
         </div>
       </section>
 
       <footer className="land-sec row between wrap faint small" style={{ paddingBottom: 48 }}>
-        <span>Built by Md Asif · demo with fictional sample companies</span>
+        <span>Built by Md Asif for the Care Guide AI Engineer assessment · sample companies are fictional</span>
         <span className="row" style={{ gap: 16 }}>
           <a href={`${API_URL}/api/docs`} target="_blank" rel="noreferrer" className="row" style={{ gap: 6 }}><Code2 size={14} /> API reference</a>
           {REPO_URL && <a href={REPO_URL} target="_blank" rel="noreferrer">Source code</a>}

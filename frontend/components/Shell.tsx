@@ -1,5 +1,5 @@
 "use client";
-import { Activity, BookOpen, Code2, FileSearch, FileStack, FolderGit2, GitCompareArrows, LayoutDashboard, Menu, Search, ShieldCheck, Upload, Workflow, X } from "lucide-react";
+import { Activity, BookOpen, Code2, FileStack, FolderGit2, GitCompareArrows, LayoutDashboard, Menu, Search, ShieldCheck, Upload, Workflow, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
@@ -23,11 +23,14 @@ const NAV = [
   ] },
 ];
 
-export function Logo() {
+/** Cottage Home Care logo (the client brand of Care Guide) next to the product name. */
+export function Logo({ stack = false }: { stack?: boolean }) {
   return (
-    <span className="brand">
-      <span className="brand-mark"><FileSearch size={17} strokeWidth={2} /></span>
-      DocIntel
+    <span className={`brand${stack ? " stack" : ""}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/brand/cottage-home-care-logo.webp" alt="Cottage Home Care" className="brand-logo" width={729} height={173} />
+      {!stack && <span className="brand-sep" aria-hidden="true" />}
+      <span className="brand-name">DocIntel{stack && <small>Document AI</small>}</span>
     </span>
   );
 }
@@ -60,7 +63,7 @@ export default function Shell({ children }: { children: ReactNode }) {
 
   const side = (
     <aside className={`side ${open ? "open" : ""}`} aria-label="Main navigation">
-      <Link href="/" aria-label="DocIntel home"><Logo /></Link>
+      <Link href="/" aria-label="DocIntel home"><Logo stack /></Link>
       {NAV.map((g) => (
         <nav className="nav" key={g.group}>
           <div className="nav-group">{g.group}</div>
