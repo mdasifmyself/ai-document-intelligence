@@ -1,9 +1,10 @@
 "use client";
-import { Activity, BookOpen, Code2, FileStack, FolderGit2, GitCompareArrows, LayoutDashboard, Menu, Search, ShieldCheck, Upload, Workflow, X } from "lucide-react";
+import { Activity, BookOpen, Code2, FileStack, FolderGit2, GitCompareArrows, LayoutDashboard, Lock, Menu, Search, ShieldCheck, Upload, Workflow, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
-import { API_URL, getCode, getJSON, PREPARED_FOR, REPO_URL, Stats } from "@/lib/api";
+import { API_URL, getCode, getJSON, lockDemo, PREPARED_FOR, REPO_URL, Stats } from "@/lib/api";
+import { useAccess } from "@/components/Gate";
 
 const NAV = [
   { group: "Work", items: [
@@ -37,6 +38,8 @@ export function Logo({ stack = false }: { stack?: boolean }) {
 
 export default function Shell({ children }: { children: ReactNode }) {
   const path = usePathname();
+  const router = useRouter();
+  const code = useAccess();
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState<number | null>(null);
   const [offline, setOffline] = useState(false);
@@ -77,6 +80,11 @@ export default function Shell({ children }: { children: ReactNode }) {
         </nav>
       ))}
       <div className="side-foot">
+        {code ? (
+          <button type="button" className="lock-btn" onClick={() => { lockDemo(); setReview(null); router.push("/dashboard"); }}>
+            <Lock size={15} /> Lock demo
+          </button>
+        ) : null}
         <a href={`${API_URL}/api/docs`} target="_blank" rel="noreferrer" className="row" style={{ gap: 8 }}><Code2 size={15} /> API reference</a>
         {REPO_URL && <a href={REPO_URL} target="_blank" rel="noreferrer" className="row" style={{ gap: 8 }}><FolderGit2 size={15} /> Source code</a>}
         <span>Built by Md Asif{PREPARED_FOR ? ` · Prepared for ${PREPARED_FOR}` : ""}</span>

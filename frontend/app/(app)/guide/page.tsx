@@ -62,7 +62,7 @@ export default function Guide() {
             <li>Up to 50 files per upload, 50 MB each.</li>
             <li>A long PDF can hold many invoices; each one is found and extracted separately.</li>
             <li>Every Excel sheet is read. Sheets with columns like Invoice No, Date, Supplier, Total are read row by row.</li>
-            <li>The demo needs an access code (in the email and at the top of the README on GitHub). It is stored in your browser only.</li>
+            <li>The demo needs an access code (in the email that shared this demo). It is kept only until you close the browser; <b>Lock demo</b> in the sidebar locks it at once.</li>
           </ul>
           <div className="divider" />
           <h2 style={{ marginBottom: 10 }}>The one rule the AI follows</h2>

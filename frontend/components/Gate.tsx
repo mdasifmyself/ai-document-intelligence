@@ -50,7 +50,7 @@ export function Gate({ children }: { children: ReactNode }) {
     try { await getJSON("/stats"); } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         setCode("");
-        setError("That access code is not valid. Check it and try again (it starts with “cg-”).");
+        setError("That access code is not valid. Check it in the email and try again.");
       }
       // any other problem (server restarting, network): keep the code; the app shows a calm notice and retries
     } finally { setBusy(false); }
@@ -63,7 +63,7 @@ export function Gate({ children }: { children: ReactNode }) {
           <KeyRound size={22} />
         </div>
         <h2>Enter the demo access code</h2>
-        <p className="muted">The code is in the email that shared this demo and at the top of the project README on GitHub. It protects the AI budget.</p>
+        <p className="muted">The code is in the email that shared this demo. It protects the AI budget, and it is asked for again in every new browser session.</p>
         <input className="input" autoFocus placeholder="Access code" value={value} onChange={(e) => setValue(e.target.value)} aria-label="Access code"
           autoComplete="off" autoCapitalize="none" spellCheck={false} />
         {error && <div className="notice err small">{error}</div>}

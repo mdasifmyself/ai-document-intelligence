@@ -8,6 +8,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 source ~/.config/docintel/server.env
 KEY="${SSH_KEY/#\~/$HOME}"
+# stamp the deployed code with its git commit (shown by GET /api/v1/meta); "-dirty" = uncommitted changes
+COMMIT=$(git rev-parse --short HEAD)
+[[ -n "$(git status --porcelain -- backend)" ]] && COMMIT="$COMMIT-dirty"
+echo "$COMMIT" > backend/app/BUILD_COMMIT
 SSH=(ssh -i "$KEY" -o IdentitiesOnly=yes -o BatchMode=yes "$SSH_HOST")
 rsync -az --delete -e "ssh -i $KEY -o IdentitiesOnly=yes -o BatchMode=yes" \
   --exclude .git --exclude 'frontend/' --exclude '.env' --exclude 'dataset/out/' --exclude '__pycache__' \

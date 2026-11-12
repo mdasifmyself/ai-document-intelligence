@@ -34,6 +34,17 @@ def health(db: Session = Depends(get_db)):
     return out
 
 
+BUILD_FILE = Path(__file__).resolve().parents[1] / "BUILD_COMMIT"   # written by deploy/deploy_server.sh
+
+
+def build_commit() -> str:
+    """Git commit the running code was deployed from ("local" when run from a checkout)."""
+    try:
+        return BUILD_FILE.read_text().strip() or "local"
+    except OSError:
+        return "local"
+
+
 @router.get("/meta", summary="Limits and configuration the UI needs")
 def meta():
     s = get_settings()
@@ -41,7 +52,7 @@ def meta():
             "max_file_mb": s.max_file_mb, "max_files_per_upload": s.max_files_per_upload, "max_pages": s.max_pages,
             "extraction_model": s.extraction_model, "vision_model": s.vision_model,
             "embedding_model": s.embedding_model, "prompt_version": PROMPT_VERSION,
-            "access_code_required": bool(s.access_code_list)}
+            "access_code_required": bool(s.access_code_list), "commit": build_commit()}
 
 
 @router.get("/stats", summary="Numbers for the dashboard", dependencies=[Depends(require_access)])

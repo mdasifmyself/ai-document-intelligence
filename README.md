@@ -9,16 +9,16 @@ between documents, sends only the unsure cases to a person, and makes everything
 | | |
 |---|---|
 | **Live demo** | https://docintel-invoice-ai.vercel.app |
-| **Access code** | **`cg-66cca54e`** |
-| **One-click sign-in** (fills in the code) | https://docintel-invoice-ai.vercel.app/dashboard?code=cg-66cca54e |
+| **Access code** | sent with the application email (the demo is locked without it) |
 | **API docs** | https://docintel-invoice-ai.vercel.app/api/docs (enter the code in the `X-Access-Code` field of any endpoint) |
 
-**First two minutes:** sign in → **Upload** → **Process all sample files** (12 prepared files: digital and scanned
+**First two minutes:** enter the access code → **Upload** → **Process all sample files** (12 prepared files: digital and scanned
 PDFs, phone photos, TIFF, Excel, CSV, a broken file) → wait a minute or two → **Review queue** → open an invoice.
 Step-by-step guide: [docs/05-how-to-use.md](docs/05-how-to-use.md).
 
-The code only opens this demo; it is published here on purpose so reviewers can sign in. A daily AI budget on the
-server limits the cost, and the code can be changed at any time.
+The code is not stored in this repository. The web app asks for it again in every new browser session, and the
+**Lock demo** button in the sidebar locks it straight away. A daily AI budget on the server limits the cost, and the
+code can be changed at any time (`ACCESS_CODES` on the server).
 
 | | |
 |---|---|

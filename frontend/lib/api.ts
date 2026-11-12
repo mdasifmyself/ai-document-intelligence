@@ -51,7 +51,7 @@ export class ApiError extends Error {
 /** Plain-language message for any failed request. */
 export function friendly(status: number, detail?: string): string {
   if (status === 0) return "Can’t reach the server. Check your internet connection; the page retries by itself.";
-  if (status === 401) return "The access code was not accepted. Enter the code again (it is in the email and the README).";
+  if (status === 401) return "The access code was not accepted. Enter the code again (it is in the email that shared this demo).";
   if (status === 413) return detail || "The upload is too large. Use files up to 50 MB, at most 50 at a time.";
   if (status === 429) return "Too many requests in a short time. Please wait a minute and try again.";
   if (status === 404) return detail || "This item no longer exists. It may have been deleted.";
@@ -61,13 +61,19 @@ export function friendly(status: number, detail?: string): string {
   return detail || "Something went wrong. Please try again.";
 }
 
+// The code is kept for this browser session only, so every new session starts at the lock screen.
+// Older builds kept it permanently in localStorage; that copy is removed so those browsers are locked again too.
+if (typeof window !== "undefined") { try { localStorage.removeItem(KEY); } catch { /* private mode */ } }
+
 export function getCode(): string {
-  try { return localStorage.getItem(KEY) || ""; } catch { return ""; }
+  try { return sessionStorage.getItem(KEY) || ""; } catch { return ""; }
 }
 export function setCode(code: string) {
-  try { code ? localStorage.setItem(KEY, code) : localStorage.removeItem(KEY); } catch { /* private mode */ }
+  try { code ? sessionStorage.setItem(KEY, code) : sessionStorage.removeItem(KEY); } catch { /* private mode */ }
   window.dispatchEvent(new Event("docintel-access"));
 }
+/** Locks the demo in this browser: the lock screen shows until the code is entered again. */
+export function lockDemo() { setCode(""); }
 
 function headers(extra?: HeadersInit): HeadersInit {
   const code = getCode();

@@ -2,7 +2,7 @@
 
 | Area | What is done |
 |---|---|
-| Access | Every API endpoint (except `/health`, `/meta`) needs an access code (`X-Access-Code` header), compared in constant time. The web app keeps the code in the browser's local storage only; a one-time `?code=` link is removed from the address bar immediately. |
+| Access | Every API endpoint (except `/health`, `/meta`) needs an access code (`X-Access-Code` header), compared in constant time. The web app keeps the code in the browser's session storage only (gone when the browser closes; **Lock demo** clears it at once), and a one-time `?code=` link is removed from the address bar immediately. The code is never stored in the repository. |
 | Transport | HTTPS everywhere: Vercel for the web app, Traefik with Let's Encrypt certificates for the API. |
 | One origin | The browser talks only to the web app's domain; Vercel forwards `/api/*` to the processing server. The server address is a Vercel secret, not in code or in the browser. |
 | Uploads | File type is detected from content (magic bytes), never trusted from the name. Size limit per file (50 MB), per request (50 files, 250 MB at the proxy), page limit (1,500). Files are stored under random names; original names are only kept in the database. |

@@ -3,10 +3,10 @@
 | | |
 |---|---|
 | **Demo** | https://docintel-invoice-ai.vercel.app |
-| **Access code** | **`cg-66cca54e`** |
-| **One-click sign-in** | https://docintel-invoice-ai.vercel.app/dashboard?code=cg-66cca54e |
+| **Access code** | sent with the application email |
 
-Enter the code once on the sign-in screen (or use the one-click link). It is then stored only in your browser.
+Enter the code on the lock screen. It is kept only for this browser session: after you close the browser, or in a
+new window, the demo asks for it again. **Lock demo** at the bottom of the sidebar locks it at once.
 
 ## The screens
 

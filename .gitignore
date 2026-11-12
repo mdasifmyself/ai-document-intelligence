@@ -17,3 +17,5 @@ dataset/out/
 dataset/samples/
 evaluation/results/raw/
 .DS_Store
+# deploy stamp (written by deploy/deploy_server.sh)
+backend/app/BUILD_COMMIT

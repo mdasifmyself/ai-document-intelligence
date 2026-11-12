@@ -346,3 +346,7 @@ mark { background: var(--orange-50); color: var(--ink); border-radius: 4px; padd
 
 /* phone: the landing bar keeps the logo and the button on one line */
 @media (max-width: 520px) { .land-nav .brand-sep, .land-nav .brand-name { display: none; } .land-nav .brand-logo { height: 30px; } }
+
+/* lock button in the sidebar footer */
+.lock-btn { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; margin-bottom: 4px; width: fit-content; border-radius: 999px; border: 1px solid var(--line-2); background: var(--surface); font-family: var(--f-ui); font-size: 13px; font-weight: 500; color: var(--navy); cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+.lock-btn:hover { background: var(--brand-50); border-color: rgba(47, 97, 178, 0.35); }

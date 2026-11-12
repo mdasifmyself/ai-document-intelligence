@@ -4,10 +4,11 @@ Interactive documentation (try every endpoint in the browser): **`/api/docs`** o
 for example https://docintel-invoice-ai.vercel.app/api/docs. The OpenAPI schema is at `/api/openapi.json`.
 
 All endpoints are under `/api/v1`. Send the access code in the header `X-Access-Code: <code>`
-(or `Authorization: Bearer <code>`). `/health` and `/meta` are open. The demo's access code is **`cg-66cca54e`**:
+(or `Authorization: Bearer <code>`). `/health` and `/meta` are open. The demo's access code is sent with the
+application email; it is not stored in this repository. Without it, every other endpoint answers `401`.
 
 ```bash
-curl -H "X-Access-Code: cg-66cca54e" https://docintel-invoice-ai.vercel.app/api/v1/stats
+curl -H "X-Access-Code: <access code>" https://docintel-invoice-ai.vercel.app/api/v1/stats
 ```
 
 ## Endpoints
