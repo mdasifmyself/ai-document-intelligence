@@ -8,6 +8,7 @@ between documents, sends only the unsure cases to a person, and makes everything
 
 | | |
 |---|---|
+| **Walkthrough video** | https://youtu.be/oq7zDO2b8Rg (2 minutes) |
 | **Live demo** | https://docintel-invoice-ai.vercel.app |
 | **Access code** | sent with the application email (the demo is locked without it) |
 | **API docs** | https://docintel-invoice-ai.vercel.app/api/docs (enter the code in the `X-Access-Code` field of any endpoint) |
